@@ -53,7 +53,7 @@ challenge_phases:
     description: templates/challenge_phase_minival_description.html
     leaderboard_public: True
     is_public: True
-    # challenge: 2650
+    challenge: 2650
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
@@ -62,10 +62,10 @@ challenge_phases:
     start_date: 2025-09-22 16:00:00
     end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
-    codename: minival
-    max_submissions_per_day: 3
-    max_submissions_per_month: 60
-    max_submissions: 60
+    codename: dev
+    max_submissions_per_day: 50
+    max_submissions_per_month: 500
+    max_submissions: 500
     default_submission_meta_attributes:
       - name: method_name
         is_visible: True
@@ -83,7 +83,7 @@ challenge_phases:
     description: templates/challenge_phase_test_description.html
     leaderboard_public: True
     is_public: True
-    # challenge: 2650
+    challenge: 2650
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
@@ -92,10 +92,10 @@ challenge_phases:
     start_date: 2025-09-22 16:00:00
     end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
-    codename: test
-    max_submissions_per_day: 2
-    max_submissions_per_month: 20
-    max_submissions: 20
+    codename: minival
+    max_submissions_per_day: 3
+    max_submissions_per_month: 100
+    max_submissions: 200
     default_submission_meta_attributes:
       - name: method_name
         is_visible: True
@@ -113,7 +113,7 @@ dataset_splits:
     name: Minival Split
     codename: val_split
   - id: 2
-    name: Test Split
+    name: Minival Split
     codename: test_split
 
 challenge_phase_splits:
