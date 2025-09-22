@@ -42,7 +42,12 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
     filename = os.path.basename(user_submission_file)
     if filename.endswith(".zip"):
         submission_type = "code_zip"
-        submission_dir = tempfile.mkdtemp(dir=os.path.abspath("./tmp"))
+        tmp_dir = os.path.abspath("./tmp")
+        # 检查并创建 tmp 目录（如果不存在）
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir, exist_ok=True)  # exist_ok=True 避免目录已存在时报错
+        # 再创建临时目录
+        submission_dir = tempfile.mkdtemp(dir=tmp_dir)
         with zipfile.ZipFile(user_submission_file, "r") as zip_ref:
             zip_ref.extractall(submission_dir)
         run_command = ["bash", "input/run.sh"]
