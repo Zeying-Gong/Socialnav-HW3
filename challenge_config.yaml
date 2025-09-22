@@ -53,7 +53,7 @@ challenge_phases:
     description: templates/challenge_phase_minival_description.html
     leaderboard_public: True
     is_public: True
-    challenge: 2650
+    # challenge: 2650
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
@@ -83,7 +83,7 @@ challenge_phases:
     description: templates/challenge_phase_test_description.html
     leaderboard_public: True
     is_public: True
-    challenge: 2650
+    # challenge: 2650
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
