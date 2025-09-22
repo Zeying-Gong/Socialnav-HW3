@@ -11,3 +11,10 @@ venv/
 # cache
 __pycache__
 *.pyc
+
+.history/
+.env
+
+Socialnav_HW_submissions
+tmp/
+logs/
