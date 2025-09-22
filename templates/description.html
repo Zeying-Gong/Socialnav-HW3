@@ -39,7 +39,7 @@
   <h5 class="title is-4">❓ Frequently Asked Questions</h5>
   <div class="content has-text-justified" style="padding-top: 0px">
   
-    <h5 class="title is-3">1. Why are my results not showing on the leaderboard?</h5>
+    <h5 class="title is-4">1. Why are my results not showing on the leaderboard?</h5>
     <p style="margin-bottom: 1rem;">
     The most common reason is that your submission did not generate a valid <code>result.json</code> file in the expected format. Please ensure your submission:
     </p>
@@ -68,7 +68,7 @@
       }
     </div>
   
-    <h5 class="title is-3">2. How do I handle different dependencies or environment requirements?</h5>
+    <h5 class="title is-4">2. How do I handle different dependencies or environment requirements?</h5>
     <p style="margin-bottom: 1rem;">
     If your submission requires additional dependencies:
     Add installation commands to your <code>run.sh</code> script using conda/pip
@@ -93,7 +93,7 @@
     source activate falcon<br>
     python your_inference_script.py
     </div>  
-    <h5 class="title is-3">3. What is the correct dataset path for my code?</h5>
+    <h5 class="title is-4">3. What is the correct dataset path for my code?</h5>
     <p style="margin-bottom: 1rem;">
     To simplify evaluation, we use a fixed dataset mount point inside the evaluation Docker container:
     </p>
@@ -104,7 +104,7 @@
     <strong>Important</strong>: Your code should always read data from this path, regardless of which phase is being evaluated. Our backend automatically mounts the appropriate dataset for each phase to this location.
     </p>
   
-    <h5 class="title is-3">4. What are the differences between Phase I and Phase II?</h5>
+    <h5 class="title is-4">4. What are the differences between Phase I and Phase II?</h5>
     <p style="margin-bottom: 1rem;">
     All submissions are evaluated inside Docker images with the following versions:
     </p>
@@ -137,7 +137,7 @@
       The two new actions (4-move_backward, 5-pause) are optional. Students can also continue using only actions 0-3 from pretrained models.
     </p>
   
-    <h5 class="title is-3">5. How can I test my submission locally?</h5>
+    <h5 class="title is-4">5. How can I test my submission locally?</h5>
     <p style="margin-bottom: 1rem;">
     <strong>For Phase II</strong>, we recommend using Docker image v0.7 for local testing:
     </p>
@@ -158,14 +158,14 @@
     <p style="margin-bottom: 1.5rem;">
     </p>
   
-    <h5 class="title is-3">6. How long does evaluation take?</h5>
+    <h5 class="title is-4">6. How long does evaluation take?</h5>
     <ul style="margin-left: 1rem; margin-bottom: 1rem;">
       <li><strong>Minival Phase</strong>: 5–10 minutes</li>
       <li><strong>Test Phase</strong>: 1-2 hours (depending on number of environments used, queue length, and inference runtime)</li>
     </ul>
     <p style="margin-bottom: 1.5rem;">
   
-    <h5 class="title is-3">7. Can I modify the evaluation pipeline or import custom code?</h5>
+    <h5 class="title is-4">7. Can I modify the evaluation pipeline or import custom code?</h5>
     <p style="margin-bottom: 1rem;">
     <strong>Yes, we encourage flexible approaches!</strong> You have significant freedom to modify the evaluation pipeline and import your own code. You can base your modifications on:
     </p>
