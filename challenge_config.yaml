@@ -119,7 +119,7 @@ dataset_splits:
 challenge_phase_splits:
   - challenge_phase_id: 1
     leaderboard_id: 1
-    dataset_split_id: 2
+    dataset_split_id: 1
     visibility: 1
     leaderboard_decimal_precision: 4
     is_leaderboard_order_descending: True
