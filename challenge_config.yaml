@@ -63,9 +63,9 @@ challenge_phases:
     end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
     codename: dev
-    max_submissions_per_day: 50
-    max_submissions_per_month: 500
-    max_submissions: 500
+    max_submissions_per_day: 5
+    max_submissions_per_month: 60
+    max_submissions: 60
     default_submission_meta_attributes:
       - name: method_name
         is_visible: True
@@ -93,9 +93,9 @@ challenge_phases:
     end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
     codename: minival
-    max_submissions_per_day: 3
-    max_submissions_per_month: 100
-    max_submissions: 200
+    max_submissions_per_day: 2
+    max_submissions_per_month: 20
+    max_submissions: 20
     default_submission_meta_attributes:
       - name: method_name
         is_visible: True
