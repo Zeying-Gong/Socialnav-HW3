@@ -1,164 +1,220 @@
 # If you are not sure what all these fields mean, please refer our documentation here:
 # https://evalai.readthedocs.io/en/latest/configuration.html
-title: Random Number Generator Challenge
-short_description: Random number generation challenge for each submission
+title: Homework 3 of AIAA 4220 - Introduction to Embodied AI 
+short_description: RGBD-based Social Navigation in Human-Shared Environments
 description: templates/description.html
 evaluation_details: templates/evaluation_details.html
 terms_and_conditions: templates/terms_and_conditions.html
-image: logo.jpg
+image: robosense_logo.png
 submission_guidelines: templates/submission_guidelines.html
-leaderboard_description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas a libero nec sagittis.
+leaderboard_description: Participants are evaluated based on navigation efficiency, social compliance, and collision avoidance. Metrics include SR, SPL, PSC, and H-Coll. The leaderboard for Phase 2 will remain private until the competition ends on September 15th, 2025 (AoE).
 evaluation_script: evaluation_script.zip
-remote_evaluation: False
-start_date: 2019-01-01 00:00:00
-end_date: 2099-05-31 23:59:59
+remote_evaluation: True
+start_date: 2025-09-22 16:00:00
+end_date: 2025-10-16 11:59:59
 published: True
 tags: 
-  - random-number-generation
-  - machine-learning
-  - data-science
-  - computer-vision
+  - Social Navigation
+  - Human-Robot Interaction
+  - Habitat 3D Simulator
 leaderboard:
   - id: 1
     schema:
       {
-        "labels": ["Metric1", "Metric2", "Metric3", "Total"],
+        "labels": ["SR", "SPL", "PSC", "H-Coll", "Total"],
         "default_order_by": "Total",
         "metadata": {
-          "Metric1": {
-            "sort_ascending": True,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "SR": {
+            "sort_ascending": False,
+            "description": "Success Rate — the percentage of episodes where the agent successfully reaches the goal.",
           },
-          "Metric2": {
+          "SPL": {
+            "sort_ascending": False,
+            "description": "Success weighted by Path Length — measures efficiency relative to shortest path.",
+          },
+          "PSC": {
+            "sort_ascending": False,
+            "description": "Personal Space Compliance — how well the agent avoids violating human personal space.",
+          },
+          "H-Coll": {
             "sort_ascending": True,
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          }
+            "description": "Human Collision Count — number of times the agent collides with humans.",
+          },
+          "Total": {
+            "description": "Weighted score: 0.4×SR + 0.3×SPL + 0.3×PSC",
+            "sort_ascending": False
+          },
         }
       }
 
 challenge_phases:
   - id: 1
     name: Dev Phase
-    description: templates/challenge_phase_1_description.html
+    description: templates/challenge_phase_dev_description.html
     leaderboard_public: False
-    is_public: True
-    challenge: 1
+    is_public: False
+    challenge: 2557
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
     disable_logs: False
-    is_submission_public: True
-    start_date: 2019-01-19 00:00:00
-    end_date: 2099-04-25 23:59:59
+    is_submission_public: False
+    start_date: 2025-05-31 16:00:00
+    end_date: 2025-09-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
     codename: dev
-    max_submissions_per_day: 5
-    max_submissions_per_month: 50
-    max_submissions: 50
+    max_submissions_per_day: 50
+    max_submissions_per_month: 500
+    max_submissions: 500
     default_submission_meta_attributes:
       - name: method_name
         is_visible: True
-      - name: method_description
-        is_visible: True
-      - name: project_url
-        is_visible: True
-      - name: publication_url
-        is_visible: True
     submission_meta_attributes:
-      - name: TextAttribute
-        description: Sample
-        type: text
-        required: False
-      - name: SingleOptionAttribute
-        description: Sample
+      - name: agree_terms
+        description: I confirm this submission was generated fairly and I accept the rules.
         type: radio
-        options: ["A", "B", "C"]
-      - name: MultipleChoiceAttribute
-        description: Sample
-        type: checkbox
-        options: ["alpha", "beta", "gamma"]
-      - name: TrueFalseField
-        description: Sample
-        type: boolean
         required: True
+        options: ["Yes, I agree"]
     is_restricted_to_select_one_submission: False
     is_partial_submission_evaluation_enabled: False
-    allowed_submission_file_types: ".json, .zip, .txt, .tsv, .gz, .csv, .h5, .npy, .npz"
+    allowed_submission_file_types: ".json, .zip"
   - id: 2
-    name: Test Phase
-    description: templates/challenge_phase_2_description.html
+    name: Minival Phase
+    description: templates/challenge_phase_minival_description.html
+    leaderboard_public: False
+    is_public: True
+    challenge: 2557
+    is_active: True
+    max_concurrent_submissions_allowed: 3
+    allowed_email_ids: []
+    disable_logs: False
+    is_submission_public: False
+    start_date: 2025-06-14 16:00:00
+    end_date: 2025-09-16 11:59:59
+    test_annotation_file: annotations/test_annotations_devsplit.json
+    codename: minival
+    max_submissions_per_day: 3
+    max_submissions_per_month: 100
+    max_submissions: 200
+    default_submission_meta_attributes:
+      - name: method_name
+        is_visible: True
+    submission_meta_attributes:
+      - name: agree_terms
+        description: I confirm this submission was generated fairly and I accept the rules.
+        type: radio
+        required: True
+        options: ["Yes, I agree"]
+    is_restricted_to_select_one_submission: False
+    is_partial_submission_evaluation_enabled: False
+    allowed_submission_file_types: ".json, .zip"
+  - id: 3 
+    name: Phase 1
+    description: templates/challenge_phase_1_description.html
     leaderboard_public: True
     is_public: True
-    challenge: 2
+    challenge: 2557
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
     disable_logs: False
     is_submission_public: True
-    start_date: 2019-01-01 00:00:00
-    end_date: 2099-05-24 23:59:59
+    start_date: 2025-06-14 16:00:00
+    end_date: 2025-08-16 11:59:59
     test_annotation_file: annotations/test_annotations_testsplit.json
-    codename: test
-    max_submissions_per_day: 5
-    max_submissions_per_month: 50
-    max_submissions: 50
+    codename: test_1
+    max_submissions_per_day: 2
+    max_submissions_per_month: 20
+    max_submissions: 20
     default_submission_meta_attributes:
       - name: method_name
         is_visible: True
-      - name: method_description
-        is_visible: True
-      - name: project_url
-        is_visible: True
-      - name: publication_url
-        is_visible: True
     submission_meta_attributes:
-      - name: TextAttribute
-        description: Sample
-        type: text
-      - name: SingleOptionAttribute
-        description: Sample
+      - name: agree_terms
+        description: I confirm this submission was generated fairly and I accept the rules.
         type: radio
-        options: ["A", "B", "C"]
-      - name: MultipleChoiceAttribute
-        description: Sample
-        type: checkbox
-        options: ["alpha", "beta", "gamma"]
-      - name: TrueFalseField
-        description: Sample
-        type: boolean
+        required: True
+        options: ["Yes, I agree"]
     is_restricted_to_select_one_submission: False
     is_partial_submission_evaluation_enabled: False
-
+    allowed_submission_file_types: ".json, .zip"
+  - id: 4
+    name: Phase 2
+    description: templates/challenge_phase_2_description.html
+    leaderboard_public: False
+    is_public: True
+    challenge: 2557
+    is_active: True
+    max_concurrent_submissions_allowed: 3
+    allowed_email_ids: []
+    disable_logs: False
+    is_submission_public: True
+    start_date: 2025-08-16 12:00:00
+    end_date: 2025-09-16 11:59:59
+    test_annotation_file: annotations/test_annotations_testsplit.json
+    codename: test_2
+    max_submissions_per_day: 2
+    max_submissions_per_month: 20
+    max_submissions: 20
+    default_submission_meta_attributes:
+      - name: method_name
+        is_visible: True
+    submission_meta_attributes:
+      - name: agree_terms
+        description: I confirm this submission was generated fairly and I accept the rules.
+        type: radio
+        required: True
+        options: ["Yes, I agree"]
+    is_restricted_to_select_one_submission: False
+    is_partial_submission_evaluation_enabled: False
+    allowed_submission_file_types: ".zip"
 dataset_splits:
-  - id: 1
-    name: Train Split
-    codename: train_split
+  # - id: 1
+  #   name: Train Split
+  #   codename: train_split
   - id: 2
-    name: Test Split
-    codename: test_split
+    name: Minival Split
+    codename: val_split
+  - id: 3
+    name: Phase 1 Test Split
+    codename: test_split_v1
+  - id: 4
+    name: Phase 2 Test Split
+    codename: test_split_v2
 
 challenge_phase_splits:
   - challenge_phase_id: 1
     leaderboard_id: 1
-    dataset_split_id: 1
+    dataset_split_id: 2
     visibility: 1
-    leaderboard_decimal_precision: 2
+    leaderboard_decimal_precision: 4
     is_leaderboard_order_descending: True
     show_execution_time: True
     show_leaderboard_by_latest_submission: True
-  - challenge_phase_id: 2
-    leaderboard_id: 1
-    dataset_split_id: 1
-    visibility: 3
-    leaderboard_decimal_precision: 2
-    is_leaderboard_order_descending: True
-    showeceution_time: False
-    show_leaderboard_by_latest_submission: False
+
   - challenge_phase_id: 2
     leaderboard_id: 1
     dataset_split_id: 2
-    visibility: 1
-    leaderboard_decimal_precision: 2
+    visibility: 2
+    leaderboard_decimal_precision: 4
     is_leaderboard_order_descending: True
     show_execution_time: True
     show_leaderboard_by_latest_submission: True
+
+  - challenge_phase_id: 3
+    leaderboard_id: 1
+    dataset_split_id: 3
+    visibility: 3
+    leaderboard_decimal_precision: 4
+    is_leaderboard_order_descending: True
+    show_execution_time: True
+    show_leaderboard_by_latest_submission: False
+
+  - challenge_phase_id: 4
+    leaderboard_id: 1
+    dataset_split_id: 4
+    visibility: 3
+    leaderboard_decimal_precision: 4
+    is_leaderboard_order_descending: True
+    show_execution_time: True
+    show_leaderboard_by_latest_submission: False

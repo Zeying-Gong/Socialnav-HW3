@@ -1,1 +1,32 @@
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+<p>     
+  The evaluation in this final phase is conducted on a <strong>private test set</strong> of approximately <strong>500 episodes</strong> from <code>social-hm3d/test</code>. This test set contains previously unseen scenes, designed to evaluate the true generalization capability of submitted models. The dataset is not publicly available and is used to determine the final rankings and awards.   
+  </p>    
+  
+  <p>
+  Participants are encouraged to explore advanced model designs, including large pretrained models such as CLIP, VLMs, or vision-language agents. We welcome <strong>train-free</strong>, <strong>zero-shot</strong>, or hybrid approaches that leverage general-purpose perception and reasoning capabilities. Use of publicly available pretrained models is allowed, provided they are clearly cited and reproducible.
+  </p>
+  
+  <p>
+  To ensure fairness, all models must be trained primarily on the provided <code>social-hm3d/train</code> split. Use of additional public datasets (e.g., iGibson, MP3D trajectories) is permitted, provided: (1) the data is fully public and widely accessible, and (2) all details of its usage are clearly cited and documented in the method description for full reproducibility. The use of private datasets, validation scene priors, or unrelated social navigation datasets for pretraining is strictly prohibited.
+  </p>
+  
+  <p>     
+  Each awarded team must submit:   
+  </p>   
+  <ul>     
+  <li>A final version of the trained model, with all weights and configurations</li>     
+  <li>A complete, runnable implementation using the competition Docker image</li>     
+  <li>A technical report detailing methodology, system architecture, and external resources used (if any)</li>   
+  </ul>      
+  
+  <p>     
+  Each team is allowed <strong>2 submissions per day</strong>, with a total limit of <strong>20 submissions</strong> in this phase. The increased submission allowance provides more opportunities for participants to refine their approaches.   
+  </p>      
+  
+  <p>     
+  <br><strong>Note:</strong> Only the <strong>best submission</strong> per team will be used for final ranking and awards. All Phase I participants are required to resubmit their models to be evaluated on the private test set.   
+  </p>    
+  
+  <p style="margin-top: 1em; font-weight: bold; color: #ffc000;">     
+  Important: Teams that were unable to submit any evaluations in Phase I are still eligible to participate in Phase II. Final rankings will be based exclusively on Phase II results on the private test set. 
+  </p>

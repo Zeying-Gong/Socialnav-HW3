@@ -1,0 +1,29 @@
+<p>     
+  This phase is designed to help participants ensure that their Docker-based submission behaves correctly under the remote evaluation setup. It provides a <strong>sanity check</strong> before submitting to the full evaluation phase.   
+  </p>      
+  
+  <p>     
+  Specifically, it consists of <strong>10 RGB-D episodes</strong> selected from the <code>Social-HM3d</code> dataset. The goal is to verify that your submission produces <strong>consistent results</strong> between local inference and remote evaluation.   
+  </p>
+  
+  <p style="background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin: 1em 0;">
+  <strong>📂 Important:</strong> All evaluation data (Minival, Phase I, Phase II) is mapped to <code>/app/Falcon/data/datasets/pointnav/social-hm3d/minival</code> inside the container. <strong>If your code works with Minival paths, it will work for all phases.</strong>
+  </p>
+  
+  <p>     
+  We strongly encourage participants to use this phase to:   
+  </p>   
+  <ul>     
+  <li>Verify submission format (directory structure, config files, result file) meets specifications</li>     
+  <li>Test Docker container functionality and GPU inference (if applicable)</li>     
+  <li>Debug environment issues (dependencies, file paths, libraries)</li>     
+  <li>Ensure the evaluation script can read your <code>output/result.json</code> file</li>   
+  </ul>      
+  
+  <p style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #76b900; margin: 1em 0;">
+  <strong>🚀 Fast-Track Evaluation:</strong> Minival submissions are processed with <strong>priority scheduling</strong> for rapid debugging. Maximum <strong>3 submissions per day</strong> allowed.
+  </p>
+  
+  <p>     
+  <strong>Note:</strong> Submissions to this phase <strong>do not affect the final ranking</strong>, but the leaderboard shows the <strong>latest result</strong> from each team.   
+  </p>

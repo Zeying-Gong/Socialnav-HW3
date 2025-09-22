@@ -1,1 +1,50 @@
-<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+<p>Our benchmark focuses on two key aspects: <strong>task completion</strong> and <strong>social compliance</strong>.</p>
+
+<p><strong>✅ Success Rate (SR):</strong><br>
+The percentage of episodes where the robot successfully reaches the goal. Success requires the robot to stop within 1.0 meter of the goal and for the goal to be oracle-visible (i.e., visible from the final pose without further movement).</p>
+
+<p><strong>✅ SPL (Success weighted by Path Length):</strong><br>
+This metric evaluates path efficiency relative to the shortest possible path. It is defined as:</p>
+
+<p><img src="https://github.com/robosense2025/track2/raw/main/images/spl_formula.png" width="400" alt="SPL formula"></p>
+
+<p>Where:</p>
+<ul>
+  <li><code>l<sub>i</sub></code>: Length of the shortest path to the goal in episode <em>i</em></li>
+  <li><code>p<sub>i</sub></code>: Path length taken by the agent in episode <em>i</em></li>
+  <li><code>S<sub>i</sub></code>: 1 if successful, 0 otherwise</li>
+</ul>
+
+<p><strong>✅ PSC (Personal Space Compliance):</strong><br>
+PSC is computed as the percentage of timesteps where the robot remains at least <strong>0.5 meters</strong> away from all humans. It reflects socially appropriate behavior. A good policy balances fast goal-reaching with minimizing personal space violations.</p>
+
+<p><strong>✅ H-Coll (Human Collision Rate):</strong><br>
+Percentage of episodes involving any human collision. Any such collision results in failure and affects SR and PSC.</p>
+
+<p><strong>🏁 Total Score:</strong><br>
+We compute a final weighted score to summarize performance:</p>
+
+<p><img src="https://github.com/robosense2025/track2/raw/main/images/total_formula.png" width="400" alt="SPL formula"></p>
+
+<p>This score encourages both efficiency and social awareness.</p>
+
+<h5 class="title is-5">📚 References</h5>
+<ol>
+  <li>
+    Peter Anderson, Angel Chang, Devendra Singh Chaplot, Alexey Dosovitskiy, Saurabh Gupta, Vladlen Koltun, Jana Kosecka, Jitendra Malik, Roozbeh Mottaghi, Manolis Savva, Amir R. Zamir. 
+    <i>On Evaluation of Embodied Navigation Agents</i>, arXiv:1807.06757, 2018.
+    [<a href="https://arxiv.org/abs/1807.06757" target="_blank">link</a>]
+  </li>
+  <li>
+    iGibson Challenge 2022. 
+    [<a href="https://svl.stanford.edu/igibson/challenge.html" target="_blank">link</a>]
+  </li>
+  <li>
+    Habitat Navigation Challenge 2023. 
+    [<a href="https://aihabitat.org/challenge/2023/" target="_blank">link</a>]
+  </li>
+  <li>
+    The 2025 ICRA Arena Challenge. 
+    [<a href="https://linhdoan.io/arena-challenge/" target="_blank">link</a>]
+  </li>
+</ol>
