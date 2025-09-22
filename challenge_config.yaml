@@ -7,7 +7,7 @@ evaluation_details: templates/evaluation_details.html
 terms_and_conditions: templates/terms_and_conditions.html
 image: logo.jpg
 submission_guidelines: templates/submission_guidelines.html
-leaderboard_description: Participants are evaluated based on navigation efficiency, social compliance, and collision avoidance. Metrics include SR, SPL, PSC, and H-Coll. The leaderboard for Phase 2 will remain private until the competition ends on September 15th, 2025 (AoE).
+leaderboard_description: Algorithms are evaluated based on navigation efficiency, social compliance, and collision avoidance. Metrics include SR, SPL, PSC, and H-Coll.
 evaluation_script: evaluation_script.zip
 remote_evaluation: True
 start_date: 2025-09-22 16:00:00
@@ -62,7 +62,7 @@ challenge_phases:
     start_date: 2025-09-22 16:00:00
     end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
-    codename: dev
+    codename: minival
     max_submissions_per_day: 50
     max_submissions_per_month: 500
     max_submissions: 500
@@ -92,7 +92,7 @@ challenge_phases:
     start_date: 2025-09-22 16:00:00
     end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
-    codename: minival
+    codename: test
     max_submissions_per_day: 3
     max_submissions_per_month: 100
     max_submissions: 200
@@ -110,17 +110,17 @@ challenge_phases:
     allowed_submission_file_types: ".zip"
 dataset_splits:
   - id: 1
-    name: Train Split
-    codename: train_split
-  - id: 2
     name: Minival Split
     codename: val_split
+  - id: 2
+    name: Test Split
+    codename: test_split
 
 challenge_phase_splits:
   - challenge_phase_id: 1
     leaderboard_id: 1
     dataset_split_id: 1
-    visibility: 1
+    visibility: 3
     leaderboard_decimal_precision: 4
     is_leaderboard_order_descending: True
     show_execution_time: True
@@ -129,8 +129,8 @@ challenge_phase_splits:
   - challenge_phase_id: 2
     leaderboard_id: 1
     dataset_split_id: 2
-    visibility: 2
+    visibility: 3
     leaderboard_decimal_precision: 4
     is_leaderboard_order_descending: True
     show_execution_time: True
-    show_leaderboard_by_latest_submission: True
+    show_leaderboard_by_latest_submission: False

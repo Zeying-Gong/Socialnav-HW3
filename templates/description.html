@@ -1,253 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIAA 4220 - Homework 3</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .img-hover-effect {
-            transition: transform 0.3s ease;
-        }
-        
-        .img-hover-effect:hover {
-            transform: scale(1.05);
-        }
-        
-        /* 调整FAQ标题字体大小 */
-        .faq-title {
-            font-size: 1.5rem !important;
-            font-weight: 600 !important;
-            margin-bottom: 1rem !important;
-            color: #363636 !important;
-        }
-        
-        /* 调整主要FAQ标题 */
-        .faq-main-title {
-            font-size: 2rem !important;
-            font-weight: 700 !important;
-            margin-bottom: 1.5rem !important;
-            color: #3273dc !important;
-        }
-        
-        /* 代码块样式优化 */
-        .code-block {
-            background-color: #f5f5f5; 
-            padding: 15px; 
-            border-radius: 8px; 
-            margin-bottom: 1rem; 
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            border-left: 4px solid #3273dc;
-        }
-        
-        /* 增强列表样式 */
-        .content ul, .content ol {
-            margin-left: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* 强调文本样式 */
-        .highlight {
-            background-color: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #ffc107;
-            margin-bottom: 1rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="content">
-            <p>      
-                👋 This is the homework 3 for AIAA 4220 - Introduction to Embodied AI. In this homework we will perform a social navigation task on Habitat platform.
-            </p>      
-            
-            <p>     
-                This track challenges students to develop advanced <strong>RGBD-based perception and navigation systems</strong> for autonomous agents operating in <strong>dynamic, human-populated indoor environments</strong>. The goal is to produce agents that navigate <strong>efficiently</strong> while adhering to <strong>social norms</strong>—avoiding collisions, respecting personal space, and adapting to human motion.   
-            </p>      
-            
-            <p>     
-                Participants are expected to design algorithms that interpret human behaviors and contextual cues, and generate socially aware navigation strategies. Key challenges include <strong>real-time adaptability, occlusion handling</strong>, and <strong>ethical decision-making</strong> in crowded or uncertain scenarios.   
-            </p>         
-            
-            <p style="text-align: center;">     
-                <img src="https://github.com/robosense2025/track2/raw/main/images/task_illustration.png" alt="Track 2 Image" class="img-hover-effect" style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">   
-            </p>      
-            
-            <hr>
-            
-            <h4 class="title is-3">🎯 Objective</h4>   
-            <div class="content has-text-justified" style="padding-top: 0px">     
-                <p>       
-                    This homework evaluates an agent's ability to perform <strong>socially compliant navigation</strong> in photorealistic, large-scale indoor environments populated with dynamic human agents.       
-                    Agents must rely solely on onboard <strong>RGBD sensors and odometry</strong>—without access to global maps, privileged state information, or future trajectories.     
-                </p>        
-            
-                <ul>       
-                    <li><strong>Social Norm Compliance</strong>: Agents must respect interpersonal space, avoid collisions, and demonstrate behavior aligned with implicit human expectations.</li>       
-                    <li><strong>Realistic Benchmarking</strong>: Environments are drawn from <strong>Social-HM3D</strong> and <strong>Social-MP3D</strong>, featuring high-fidelity scenes and collision-aware, motion-predicted humans.</li>       
-                    <li><strong>Egocentric Perception</strong>: Navigation is based on first-person RGBD input and relative goal coordinates, simulating the perceptual constraints of a real robot.</li>     
-                </ul>        
-            
-                <p>       
-                    Ultimately, this homework aims to promote research in building socially intelligent embodied agents that <strong> navigate not just safely, but naturally in human-centric spaces </strong>.     
-                </p>   
-            </div>
-            
-            <hr>
-            
-            <h4 class="faq-main-title">❓ Frequently Asked Questions</h4>
-            <div class="content has-text-justified" style="padding-top: 0px">
-            
-                <h4 class="faq-title">1. Why are my results not showing on the leaderboard?</h4>
-                <p style="margin-bottom: 1rem;">
-                    The most common reason is that your submission did not generate a valid <code>result.json</code> file in the expected format. Please ensure your submission:
-                </p>
-                <ul style="margin-left: 1rem; margin-bottom: 1rem;">
-                    <li>Produces a valid JSON file at <code>output/result.json</code></li>
-                    <li>Contains all required metrics: <code>SR</code>, <code>SPL</code>, <code>PSC</code>, <code>H-Coll</code></li>
-                    <li>Uses the correct numerical format (floating-point values)</li>
-                </ul>
-                <p style="margin-bottom: 1.5rem;">
-                    Example of correct format:
-                </p>
-                <div class="code-block">
-                    {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"SR": 0.50,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"SPL": 0.45,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"PSC": 0.60,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;"H-Coll": 0.02<br>
-                    }
-                </div>
-            
-                <h4 class="faq-title">2. How do I handle different dependencies or environment requirements?</h4>
-                <p style="margin-bottom: 1rem;">
-                    If your submission requires additional dependencies:
-                    Add installation commands to your <code>run.sh</code> script using conda/pip
-                </p>
-                <p style="margin-bottom: 0.5rem;">
-                    Example <code>run.sh</code> with dependency installation:
-                </p>
-                <div class="code-block">
-                    #!/bin/bash<br>
-                    # Install additional dependencies<br>
-                    conda install -c conda-forge your_package<br>
-                    pip install specific_library==1.2.3<br>
-                    <br>
-                    # Run your inference<br>
-                    source activate falcon<br>
-                    python your_inference_script.py
-                </div>
-                
-                <h4 class="faq-title">3. What is the correct dataset path for my code?</h4>
-                <p style="margin-bottom: 1rem;">
-                    To simplify evaluation, we use a fixed dataset mount point inside the evaluation Docker container:
-                </p>
-                <div class="code-block">
-                    /app/Falcon/data/datasets/pointnav/social-hm3d/minival
-                </div>
-                <div class="highlight">
-                    <strong>Important</strong>: Your code should always read data from this path, regardless of which phase is being evaluated. Our backend automatically mounts the appropriate dataset for each phase to this location.
-                </div>
-            
-                <h4 class="faq-title">4. What are the differences between Phase I and Phase II?</h4>
-                <p style="margin-bottom: 1rem;">
-                    All submissions are evaluated inside Docker images with the following versions:
-                </p>
-                <strong>Phase II</strong>: <code>docker pull zeyinggong/robosense_socialnav:v0.7</code>
-                <p style="margin-bottom: 0.5rem;">
-                    <strong>Key Changes in v0.7</strong>:
-                </p>
-                <ol style="margin-left: 1rem; margin-bottom: 1rem;">
-                    <li><strong>Fixed driver compatibility issues</strong> due to EGL errors</li>
-                    <li><strong>Multi-environment support</strong>: Phase II supports up to 8 environments for evaluation</li>
-                    <li><strong>Updated action space</strong>: The action set has been refined to clearly distinguish between <strong>stopping</strong> <em>(ending an episode)</em> and <strong>pausing</strong> <em>(remaining stationary)</em>. A new <strong>move_backward</strong> action is also introduced.</li>
-                </ol>
-                <div class="code-block">
-                    0 - stop            # now correctly ends the episode<br>
-                    1 - move_forward<br>
-                    2 - turn_left<br>
-                    3 - turn_right<br>
-                    4 - move_backward   # newly added action for moving backward<br>
-                    5 - pause           # newly added action for pausing without movement
-                </div>
-                <p style="margin-bottom: 1.5rem;">
-                    The two new actions (4-move_backward, 5-pause) are optional. Students can also continue using only actions 0-3 from pretrained models.
-                </p>
-            
-                <h4 class="faq-title">5. How can I test my submission locally?</h4>
-                <p style="margin-bottom: 1rem;">
-                    <strong>For Phase II</strong>, we recommend using Docker image v0.7 for local testing:
-                </p>
-                <div class="code-block">
-                    docker run --rm -it \<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;--gpus all \<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;--runtime=nvidia \<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;-v /path/to/your/submission:/app/Falcon/input:ro \<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;-v /path/to/your/data:/app/Falcon/data:ro \<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;zeyinggong/robosense_socialnav:v0.7
-                </div>
-                <p style="margin-bottom: 1rem;">
-                    You can manually execute your <code>run.sh</code> inside the container to verify correctness.
-                </p>
-                <p style="margin-bottom: 1rem;">
-                    <strong>Tip</strong>: Refer to the provided <a href="https://drive.google.com/file/d/1k5tMeocASZhCUL2SFUILqWTszNRYjC4L/view?usp=sharing" target="_blank">Baseline ZIP Submission Example (Updated)</a> for reference.
-                </p>
-            
-                <h4 class="faq-title">6. How long does evaluation take?</h4>
-                <ul style="margin-left: 1rem; margin-bottom: 1rem;">
-                    <li><strong>Minival Phase</strong>: 5–10 minutes</li>
-                    <li><strong>Test Phase</strong>: 1-2 hours (depending on number of environments used, queue length, and inference runtime)</li>
-                </ul>
-            
-                <h4 class="faq-title">7. Can I modify the evaluation pipeline or import custom code?</h4>
-                <p style="margin-bottom: 1rem;">
-                    <strong>Yes, we encourage flexible approaches!</strong> You have significant freedom to modify the evaluation pipeline and import your own code. You can base your modifications on:
-                </p>
-                <ul style="margin-left: 1rem; margin-bottom: 1rem;">
-                    <li><code>Falcon/habitat-baselines/habitat_baselines/eval.py</code> (main evaluation script)</li>
-                    <li><code>Falcon/habitat-baselines/habitat_baselines/rl/ppo/falcon_evaluator.py</code> (evaluator implementation)</li>
-                </ul>
-                <p style="margin-bottom: 1rem;">
-                    You can import and integrate your custom modules, modify the inference pipeline, or adapt the evaluation logic to suit your approach.
-                </p>
-                <p style="margin-bottom: 0.5rem;">
-                    <strong>⚠️ However, the following restrictions must be respected:</strong>
-                </p>
-                <ol style="margin-left: 1rem; margin-bottom: 1.5rem;">
-                    <li><strong>No bypassing simulation</strong>: You cannot circumvent the simulator's navigation logic to directly generate result files</li>
-                    <li><strong>No additional sensors/information</strong>: You cannot access extra environmental information or sensors beyond the allowed observation keys</li>
-                    <li><strong>Open-source models only</strong>: You cannot use proprietary pretrained models or private datasets that are not publicly accessible</li>
-                </ol>
-                <div class="highlight">
-                    These restrictions ensure fair competition while maintaining the scientific integrity of the homework.
-                </div>
-            </div>
-        </div>
+<p>      
+  👋 This is the homework 3 for AIAA 4220 - Introduction to Embodied AI. In this homework we will perform a social navigation task on Habitat platform.
+  </p>      
+  
+  <p>     
+  This track challenges students to develop advanced <strong>RGBD-based perception and navigation systems</strong> for autonomous agents operating in <strong>dynamic, human-populated indoor environments</strong>. The goal is to produce agents that navigate <strong>efficiently</strong> while adhering to <strong>social norms</strong>—avoiding collisions, respecting personal space, and adapting to human motion.   
+  </p>      
+  
+  <p>     
+  Participants are expected to design algorithms that interpret human behaviors and contextual cues, and generate socially aware navigation strategies. Key challenges include <strong>real-time adaptability, occlusion handling</strong>, and <strong>ethical decision-making</strong> in crowded or uncertain scenarios.   
+  </p>         
+  
+  <p style="text-align: center;">     
+  <img src="https://github.com/robosense2025/track2/raw/main/images/task_illustration.png" alt="Track 2 Image" class="img-hover-effect" style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">   
+  </p>      
+  
+  <hr>
+  
+  <h5 class="title is-4">🎯 Objective</h5>   
+  <div class="content has-text-justified" style="padding-top: 0px">     
+    <p>       
+    This homework evaluates an agent's ability to perform <strong>socially compliant navigation</strong> in photorealistic, large-scale indoor environments populated with dynamic human agents.       
+    Agents must rely solely on onboard <strong>RGBD sensors and odometry</strong>—without access to global maps, privileged state information, or future trajectories.     
+    </p>        
+  
+    <ul>       
+      <li><strong>Social Norm Compliance</strong>: Agents must respect interpersonal space, avoid collisions, and demonstrate behavior aligned with implicit human expectations.</li>       
+      <li><strong>Realistic Benchmarking</strong>: Environments are drawn from <strong>Social-HM3D</strong> and <strong>Social-MP3D</strong>, featuring high-fidelity scenes and collision-aware, motion-predicted humans.</li>       
+      <li><strong>Egocentric Perception</strong>: Navigation is based on first-person RGBD input and relative goal coordinates, simulating the perceptual constraints of a real robot.</li>     
+    </ul>        
+  
+    <p>       
+    Ultimately, this homework aims to promote research in building socially intelligent embodied agents that <strong> navigate not just safely, but naturally in human-centric spaces </strong>.     
+    </p>   
+  </div>
+  
+  <hr>
+  
+  <h5 class="title is-4">❓ Frequently Asked Questions</h5>
+  <div class="content has-text-justified" style="padding-top: 0px">
+  
+    <h5 class="title is-3">1. Why are my results not showing on the leaderboard?</h5>
+    <p style="margin-bottom: 1rem;">
+    The most common reason is that your submission did not generate a valid <code>result.json</code> file in the expected format. Please ensure your submission:
+    </p>
+    <ul style="margin-left: 1rem; margin-bottom: 1rem;">
+      <li>Produces a valid JSON file at <code>output/result.json</code></li>
+      <li>Contains all required metrics: <code>SR</code>, <code>SPL</code>, <code>PSC</code>, <code>H-Coll</code></li>
+      <li>Uses the correct numerical format (floating-point values)</li>
+    </ul>
+    <p style="margin-bottom: 1.5rem;">
+    Example of correct format:
+    </p>
+    <div style="
+    background-color: #f5f5f5; 
+    padding: 15px; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5; /* 少量留白，兼顾美观和紧凑 */
+  ">
+      {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;"SR": 0.50,<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;"SPL": 0.45,<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;"PSC": 0.60,<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;"H-Coll": 0.02<br>
+      }
     </div>
-</body>
-</html>
+  
+    <h5 class="title is-3">2. How do I handle different dependencies or environment requirements?</h5>
+    <p style="margin-bottom: 1rem;">
+    If your submission requires additional dependencies:
+    Add installation commands to your <code>run.sh</code> script using conda/pip
+    <p style="margin-bottom: 0.5rem;">
+    Example <code>run.sh</code> with dependency installation:
+    </p>
+    <div style="
+    background-color: #f5f5f5; 
+    padding: 15px; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5; /* 少量留白，兼顾美观和紧凑 */
+  ">
+    #!/bin/bash<br>
+    # Install additional dependencies<br>
+    conda install -c conda-forge your_package<br>
+    pip install specific_library==1.2.3<br>
+    <br>
+    # Run your inference<br>
+    source activate falcon<br>
+    python your_inference_script.py
+    </div>  
+    <h5 class="title is-3">3. What is the correct dataset path for my code?</h5>
+    <p style="margin-bottom: 1rem;">
+    To simplify evaluation, we use a fixed dataset mount point inside the evaluation Docker container:
+    </p>
+        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; margin-bottom: 1rem; font-family: monospace;">
+        /app/Falcon/data/datasets/pointnav/social-hm3d/minival
+      </div>
+    <p style="margin-bottom: 1.5rem;">
+    <strong>Important</strong>: Your code should always read data from this path, regardless of which phase is being evaluated. Our backend automatically mounts the appropriate dataset for each phase to this location.
+    </p>
+  
+    <h5 class="title is-3">4. What are the differences between Phase I and Phase II?</h5>
+    <p style="margin-bottom: 1rem;">
+    All submissions are evaluated inside Docker images with the following versions:
+    </p>
+    <strong>Phase II</strong>: <code>docker pull zeyinggong/robosense_socialnav:v0.7</code>
+    <p style="margin-bottom: 0.5rem;">
+    <strong>Key Changes in v0.7</strong>:
+    </p>
+    <ol style="margin-left: 1rem; margin-bottom: 1rem;">
+      <li><strong>Fixed driver compatibility issues</strong> due to EGL errors</li>
+      <li><strong>Multi-environment support</strong>: Phase II supports up to 8 environments for evaluation</li>
+      <li><strong>Updated action space</strong>: The action set has been refined to clearly distinguish between <strong>stopping</strong> <em>(ending an episode)</em> and <strong>pausing</strong> <em>(remaining stationary)</em>. A new <strong>move_backward</strong> action is also introduced.</li>
+    </ol>
+    <div style="
+    background-color: #f5f5f5; 
+    padding: 15px; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5; /* 少量留白，兼顾美观和紧凑 */
+  ">
+      0 - stop            # now correctly ends the episode<br>
+      1 - move_forward<br>
+      2 - turn_left<br>
+      3 - turn_right<br>
+      4 - move_backward   # newly added action for moving backward<br>
+      5 - pause           # newly added action for pausing without movement
+    </div>
+    <p style="margin-bottom: 1.5rem;">
+      The two new actions (4-move_backward, 5-pause) are optional. Students can also continue using only actions 0-3 from pretrained models.
+    </p>
+  
+    <h5 class="title is-3">5. How can I test my submission locally?</h5>
+    <p style="margin-bottom: 1rem;">
+    <strong>For Phase II</strong>, we recommend using Docker image v0.7 for local testing:
+    </p>
+    <div style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; margin-bottom: 1rem; font-family: monospace;">
+      docker run --rm -it \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;--gpus all \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;--runtime=nvidia \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;-v /path/to/your/submission:/app/Falcon/input:ro \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;-v /path/to/your/data:/app/Falcon/data:ro \<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;zeyinggong/robosense_socialnav:v0.7
+    </div>
+    <p style="margin-bottom: 1rem;">
+    You can manually execute your <code>run.sh</code> inside the container to verify correctness.
+    </p>
+    <p style="margin-bottom: 1rem;">
+    <strong>Tip</strong>: Refer to the provided <a href="https://drive.google.com/file/d/1k5tMeocASZhCUL2SFUILqWTszNRYjC4L/view?usp=sharing" target="_blank">Baseline ZIP Submission Example (Updated)</a> for reference.
+    </p>
+    <p style="margin-bottom: 1.5rem;">
+    </p>
+  
+    <h5 class="title is-3">6. How long does evaluation take?</h5>
+    <ul style="margin-left: 1rem; margin-bottom: 1rem;">
+      <li><strong>Minival Phase</strong>: 5–10 minutes</li>
+      <li><strong>Test Phase</strong>: 1-2 hours (depending on number of environments used, queue length, and inference runtime)</li>
+    </ul>
+    <p style="margin-bottom: 1.5rem;">
+  
+    <h5 class="title is-3">7. Can I modify the evaluation pipeline or import custom code?</h5>
+    <p style="margin-bottom: 1rem;">
+    <strong>Yes, we encourage flexible approaches!</strong> You have significant freedom to modify the evaluation pipeline and import your own code. You can base your modifications on:
+    </p>
+    <ul style="margin-left: 1rem; margin-bottom: 1rem;">
+      <li><code>Falcon/habitat-baselines/habitat_baselines/eval.py</code> (main evaluation script)</li>
+      <li><code>Falcon/habitat-baselines/habitat_baselines/rl/ppo/falcon_evaluator.py</code> (evaluator implementation)</li>
+    </ul>
+    <p style="margin-bottom: 1rem;">
+    You can import and integrate your custom modules, modify the inference pipeline, or adapt the evaluation logic to suit your approach.
+    </p>
+    <p style="margin-bottom: 0.5rem;">
+    <strong>⚠️ However, the following restrictions must be respected:</strong>
+    </p>
+    <ol style="margin-left: 1rem; margin-bottom: 1.5rem;">
+      <li><strong>No bypassing simulation</strong>: You cannot circumvent the simulator's navigation logic to directly generate result files</li>
+      <li><strong>No additional sensors/information</strong>: You cannot access extra environmental information or sensors beyond the allowed observation keys</li>
+      <li><strong>Open-source models only</strong>: You cannot use proprietary pretrained models or private datasets that are not publicly accessible</li>
+    </ol>
+    <p style="margin-bottom: 1.5rem;">
+    These restrictions ensure fair competition while maintaining the scientific integrity of the homework.
+    </p>
+  
+  
+  </div>
