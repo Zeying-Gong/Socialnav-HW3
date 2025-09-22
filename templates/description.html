@@ -1,18 +1,14 @@
 <p>      
-  👋 Welcome to <strong>Track <span style="color: #76b900;">#2</span>: Social Navigation</strong> of the <a href="https://robosense2025.github.io/" target="_blank"><strong>2025 RoboSense Challenge</strong></a>!   
+  👋 This is the homework 3 for AIAA 4220 - Introduction to Embodied AI. In this homework we will perform a social navigation task on Habitat platform.
   </p>      
   
   <p>     
-  This track challenges participants to develop advanced <strong>RGBD-based perception and navigation systems</strong> for autonomous agents operating in <strong>dynamic, human-populated indoor environments</strong>. The goal is to produce agents that navigate <strong>efficiently</strong> while adhering to <strong>social norms</strong>—avoiding collisions, respecting personal space, and adapting to human motion.   
+  This track challenges students to develop advanced <strong>RGBD-based perception and navigation systems</strong> for autonomous agents operating in <strong>dynamic, human-populated indoor environments</strong>. The goal is to produce agents that navigate <strong>efficiently</strong> while adhering to <strong>social norms</strong>—avoiding collisions, respecting personal space, and adapting to human motion.   
   </p>      
   
   <p>     
   Participants are expected to design algorithms that interpret human behaviors and contextual cues, and generate socially aware navigation strategies. Key challenges include <strong>real-time adaptability, occlusion handling</strong>, and <strong>ethical decision-making</strong> in crowded or uncertain scenarios.   
-  </p>      
-  
-  <p>     
-  🏆 <strong>Prize Pool</strong>: <span>$</span>2,000 USD (1st: <span>$</span>1,000, 2nd: <span>$</span>600, 3rd: <span>$</span>400) + Innovation Awards   
-  </p>        
+  </p>         
   
   <p style="text-align: center;">     
   <img src="https://github.com/robosense2025/track2/raw/main/images/task_illustration.png" alt="Track 2 Image" class="img-hover-effect" style="max-width: 80%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">   
@@ -20,21 +16,10 @@
   
   <hr>
   
-  <h5 class="title is-5">📋 Competition Details</h5>
-  <div class="content has-text-justified" style="padding-top: 0px">
-    <ul>
-      <li><strong>Venue</strong>: IROS 2025, Hangzhou (Oct 19-25, 2025)</li>
-      <li><strong>Registration</strong>: <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform" target="_blank">Google Form</a> (Open until Aug 15)</li>
-      <li><strong>Contact</strong>: <a href="mailto:robosense2025@gmail.com">robosense2025@gmail.com</a></li>
-    </ul>
-  </div>
-  
-  <hr>      
-  
   <h5 class="title is-5">🎯 Objective</h5>   
   <div class="content has-text-justified" style="padding-top: 0px">     
     <p>       
-    This track evaluates an agent's ability to perform <strong>socially compliant navigation</strong> in photorealistic, large-scale indoor environments populated with dynamic human agents.       
+    This homework evaluates an agent's ability to perform <strong>socially compliant navigation</strong> in photorealistic, large-scale indoor environments populated with dynamic human agents.       
     Agents must rely solely on onboard <strong>RGBD sensors and odometry</strong>—without access to global maps, privileged state information, or future trajectories.     
     </p>        
   
@@ -45,7 +30,7 @@
     </ul>        
   
     <p>       
-    Ultimately, this track aims to promote research in building socially intelligent embodied agents that <strong> navigate not just safely, but naturally in human-centric spaces </strong>.     
+    Ultimately, this homework aims to promote research in building socially intelligent embodied agents that <strong> navigate not just safely, but naturally in human-centric spaces </strong>.     
     </p>   
   </div>
   
@@ -66,31 +51,30 @@
     <p style="margin-bottom: 1.5rem;">
     Example of correct format:
     </p>
-    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1.5rem;"><code>{
-    "SR": 0.50,
-    "SPL": 0.45,
-    "PSC": 0.60,
-    "H-Coll": 0.02
+    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1.5rem;">
+      <code>{
+    "SR": 0.50,<br>
+    "SPL": 0.45,<br>
+    "PSC": 0.60,<br>
+    "H-Coll": 0.02<br>
   }</code></pre>
   
     <h6 class="title is-6" style="margin-bottom: 0.5rem;">2. How do I handle different dependencies or environment requirements?</h6>
     <p style="margin-bottom: 1rem;">
     If your submission requires additional dependencies:
-    </p>
-    <ul style="margin-left: 1rem; margin-bottom: 1rem;">
-      <li><strong>Minor dependencies</strong>: Add installation commands to your <code>run.sh</code> script using conda/pip</li>
-      <li><strong>Major differences</strong>: Contact us via email (robosense2025@gmail.com), Slack, or WeChat for assistance</li>
-    </ul>
+    Add installation commands to your <code>run.sh</code> script using conda/pip
     <p style="margin-bottom: 0.5rem;">
     Example <code>run.sh</code> with dependency installation:
     </p>
-    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1.5rem;"><code>#!/bin/bash
-  # Install additional dependencies
-  conda install -c conda-forge your_package
-  pip install specific_library==1.2.3
+    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1.5rem;">
+      <code>
+  #!/bin/bash<br>
+  # Install additional dependencies<br>
+  conda install -c conda-forge your_package<br>
+  pip install specific_library==1.2.3<br>
   
-  # Run your inference
-  source activate falcon
+  # Run your inference<br>
+  source activate falcon<br>
   python your_inference_script.py</code></pre>
   
     <h6 class="title is-6" style="margin-bottom: 0.5rem;">3. What is the correct dataset path for my code?</h6>
@@ -108,10 +92,7 @@
     <p style="margin-bottom: 1rem;">
     All submissions are evaluated inside Docker images with the following versions:
     </p>
-    <ul style="margin-left: 1rem; margin-bottom: 1rem;">
-      <li><strong>Phase I</strong>: <code>docker pull zeyinggong/robosense_socialnav:v0.5</code></li>
-      <li><strong>Phase II</strong>: <code>docker pull zeyinggong/robosense_socialnav:v0.7</code></li>
-    </ul>
+    <strong>Phase II</strong>: <code>docker pull zeyinggong/robosense_socialnav:v0.7</code>
     <p style="margin-bottom: 0.5rem;">
     <strong>Key Changes in v0.7</strong>:
     </p>
@@ -120,11 +101,12 @@
       <li><strong>Multi-environment support</strong>: Phase II supports up to 8 environments for evaluation</li>
       <li><strong>Updated action space</strong>: The action set has been refined to clearly distinguish between <strong>stopping</strong> <em>(ending an episode)</em> and <strong>pausing</strong> <em>(remaining stationary)</em>. A new <strong>move_backward</strong> action is also introduced.</li>
     </ol>
-    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1rem;"><code>0 - stop            # now correctly ends the episode
-  1 - move_forward
-  2 - turn_left
-  3 - turn_right
-  4 - move_backward   # newly added action for moving backward
+    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1rem;">
+      <code>0 - stop            # now correctly ends the episode<br>
+  1 - move_forward<br>
+  2 - turn_left<br>
+  3 - turn_right<br>
+  4 - move_backward   # newly added action for moving backward<br>
   5 - pause           # newly added action for pausing without movement</code></pre>
     <p style="margin-bottom: 1.5rem;">
       The two new actions (4-move_backward, 5-pause) are optional. Teams can continue using only actions 0-3 from Phase 1. Therefore, the action space is fully backward-compatible with Phase 1, ensuring smooth transition for existing methods.
@@ -149,22 +131,14 @@
     <strong>Tip</strong>: Refer to the provided <a href="https://drive.google.com/file/d/1k5tMeocASZhCUL2SFUILqWTszNRYjC4L/view?usp=sharing" target="_blank">Baseline ZIP Submission Example (Updated)</a> for reference.
     </p>
     <p style="margin-bottom: 1.5rem;">
-    <strong>Note</strong>: Phase II does not support action submissions since the test dataset is not publicly available.
     </p>
   
     <h6 class="title is-6" style="margin-bottom: 0.5rem;">6. How long does evaluation take?</h6>
     <ul style="margin-left: 1rem; margin-bottom: 1rem;">
       <li><strong>Minival Phase</strong>: 5–10 minutes</li>
-      <li><strong>Phase I Full Evaluation</strong>: 3–5 hours (depending on queue length and inference runtime)</li>
-      <li><strong>Phase II Full Evaluation</strong>: 2–4 hours (depending on number of environments used, queue length, and inference runtime)</li>
+      <li><strong>Test Phase</strong>: 1-2 hours (depending on number of environments used, queue length, and inference runtime)</li>
     </ul>
     <p style="margin-bottom: 1.5rem;">
-    If your submission remains pending for over 48 hours, please:
-    </p>
-    <ul style="margin-left: 1rem; margin-bottom: 1.5rem;">
-      <li>Open an issue on our <a href="https://github.com/robosense2025/track2/issues" target="_blank">GitHub repository</a></li>
-      <li>Contact us at <a href="mailto:robosense2025@gmail.com">robosense2025@gmail.com</a></li>
-    </ul>
   
     <h6 class="title is-6" style="margin-bottom: 0.5rem;">7. Can I modify the evaluation pipeline or import custom code?</h6>
     <p style="margin-bottom: 1rem;">
@@ -186,17 +160,8 @@
       <li><strong>Open-source models only</strong>: You cannot use proprietary pretrained models or private datasets that are not publicly accessible</li>
     </ol>
     <p style="margin-bottom: 1.5rem;">
-    These restrictions ensure fair competition while maintaining the scientific integrity of the challenge.
+    These restrictions ensure fair competition while maintaining the scientific integrity of the homework.
     </p>
   
-    <div style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid #76b900; margin-top: 1.5rem;">
-      <h6 style="margin-bottom: 0.5rem; color: #333;"><strong>🆘 Still need help?</strong></h6>
-      <p style="margin-bottom: 0.5rem;">If your question isn't answered here, please reach out to us:</p>
-      <ul style="margin-left: 1rem; margin-bottom: 0;">
-        <li><strong>Email</strong>: <a href="mailto:robosense2025@gmail.com">robosense2025@gmail.com</a></li>
-        <li><strong>GitHub Issues</strong>: <a href="https://github.com/robosense2025/track2/issues" target="_blank">Track 2 Issues</a></li>
-        <li><strong>Competition Website</strong>: <a href="https://robosense2025.github.io/" target="_blank">RoboSense 2025</a></li>
-      </ul>
-    </div>
   
   </div>
