@@ -51,16 +51,16 @@ challenge_phases:
   - id: 1
     name: Dev Phase
     description: templates/challenge_phase_dev_description.html
-    leaderboard_public: False
-    is_public: False
+    leaderboard_public: True
+    is_public: True
     challenge: 2557
     is_active: True
     max_concurrent_submissions_allowed: 3
     allowed_email_ids: []
     disable_logs: False
     is_submission_public: False
-    start_date: 2025-05-31 16:00:00
-    end_date: 2025-09-16 11:59:59
+    start_date: 2025-09-22 16:00:00
+    end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
     codename: dev
     max_submissions_per_day: 50
@@ -81,7 +81,7 @@ challenge_phases:
   - id: 2
     name: Minival Phase
     description: templates/challenge_phase_minival_description.html
-    leaderboard_public: False
+    leaderboard_public: True
     is_public: True
     challenge: 2557
     is_active: True
@@ -89,8 +89,8 @@ challenge_phases:
     allowed_email_ids: []
     disable_logs: False
     is_submission_public: False
-    start_date: 2025-06-14 16:00:00
-    end_date: 2025-09-16 11:59:59
+    start_date: 2025-09-22 16:00:00
+    end_date: 2025-10-16 11:59:59
     test_annotation_file: annotations/test_annotations_devsplit.json
     codename: minival
     max_submissions_per_day: 3
@@ -108,79 +108,13 @@ challenge_phases:
     is_restricted_to_select_one_submission: False
     is_partial_submission_evaluation_enabled: False
     allowed_submission_file_types: ".json, .zip"
-  - id: 3 
-    name: Phase 1
-    description: templates/challenge_phase_1_description.html
-    leaderboard_public: True
-    is_public: True
-    challenge: 2557
-    is_active: True
-    max_concurrent_submissions_allowed: 3
-    allowed_email_ids: []
-    disable_logs: False
-    is_submission_public: True
-    start_date: 2025-06-14 16:00:00
-    end_date: 2025-08-16 11:59:59
-    test_annotation_file: annotations/test_annotations_testsplit.json
-    codename: test_1
-    max_submissions_per_day: 2
-    max_submissions_per_month: 20
-    max_submissions: 20
-    default_submission_meta_attributes:
-      - name: method_name
-        is_visible: True
-    submission_meta_attributes:
-      - name: agree_terms
-        description: I confirm this submission was generated fairly and I accept the rules.
-        type: radio
-        required: True
-        options: ["Yes, I agree"]
-    is_restricted_to_select_one_submission: False
-    is_partial_submission_evaluation_enabled: False
-    allowed_submission_file_types: ".json, .zip"
-  - id: 4
-    name: Phase 2
-    description: templates/challenge_phase_2_description.html
-    leaderboard_public: False
-    is_public: True
-    challenge: 2557
-    is_active: True
-    max_concurrent_submissions_allowed: 3
-    allowed_email_ids: []
-    disable_logs: False
-    is_submission_public: True
-    start_date: 2025-08-16 12:00:00
-    end_date: 2025-09-16 11:59:59
-    test_annotation_file: annotations/test_annotations_testsplit.json
-    codename: test_2
-    max_submissions_per_day: 2
-    max_submissions_per_month: 20
-    max_submissions: 20
-    default_submission_meta_attributes:
-      - name: method_name
-        is_visible: True
-    submission_meta_attributes:
-      - name: agree_terms
-        description: I confirm this submission was generated fairly and I accept the rules.
-        type: radio
-        required: True
-        options: ["Yes, I agree"]
-    is_restricted_to_select_one_submission: False
-    is_partial_submission_evaluation_enabled: False
-    allowed_submission_file_types: ".zip"
 dataset_splits:
-  # - id: 1
-  #   name: Train Split
-  #   codename: train_split
+  - id: 1
+    name: Train Split
+    codename: train_split
   - id: 2
     name: Minival Split
     codename: val_split
-  - id: 3
-    name: Phase 1 Test Split
-    codename: test_split_v1
-  - id: 4
-    name: Phase 2 Test Split
-    codename: test_split_v2
 
 challenge_phase_splits:
   - challenge_phase_id: 1
@@ -200,21 +134,3 @@ challenge_phase_splits:
     is_leaderboard_order_descending: True
     show_execution_time: True
     show_leaderboard_by_latest_submission: True
-
-  - challenge_phase_id: 3
-    leaderboard_id: 1
-    dataset_split_id: 3
-    visibility: 3
-    leaderboard_decimal_precision: 4
-    is_leaderboard_order_descending: True
-    show_execution_time: True
-    show_leaderboard_by_latest_submission: False
-
-  - challenge_phase_id: 4
-    leaderboard_id: 1
-    dataset_split_id: 4
-    visibility: 3
-    leaderboard_decimal_precision: 4
-    is_leaderboard_order_descending: True
-    show_execution_time: True
-    show_leaderboard_by_latest_submission: False
