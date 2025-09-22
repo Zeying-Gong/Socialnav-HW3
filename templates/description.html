@@ -16,7 +16,7 @@
   
   <hr>
   
-  <h5 class="title is-5">🎯 Objective</h5>   
+  <h5 class="title is-4">🎯 Objective</h5>   
   <div class="content has-text-justified" style="padding-top: 0px">     
     <p>       
     This homework evaluates an agent's ability to perform <strong>socially compliant navigation</strong> in photorealistic, large-scale indoor environments populated with dynamic human agents.       
@@ -36,10 +36,10 @@
   
   <hr>
   
-  <h5 class="title is-5">❓ Frequently Asked Questions</h5>
+  <h5 class="title is-4">❓ Frequently Asked Questions</h5>
   <div class="content has-text-justified" style="padding-top: 0px">
   
-    <h6 class="title is-6">1. Why are my results not showing on the leaderboard?</h6>
+    <h6 class="title is-5">1. Why are my results not showing on the leaderboard?</h6>
     <p style="margin-bottom: 1rem;">
     The most common reason is that your submission did not generate a valid <code>result.json</code> file in the expected format. Please ensure your submission:
     </p>
@@ -68,25 +68,32 @@
       }
     </div>
   
-    <h6 class="title is-6">2. How do I handle different dependencies or environment requirements?</h6>
+    <h6 class="title is-5">2. How do I handle different dependencies or environment requirements?</h6>
     <p style="margin-bottom: 1rem;">
     If your submission requires additional dependencies:
     Add installation commands to your <code>run.sh</code> script using conda/pip
     <p style="margin-bottom: 0.5rem;">
     Example <code>run.sh</code> with dependency installation:
     </p>
-    <pre style="background-color: #f5f5f5; padding: 10px; border-radius: 4px; margin-bottom: 1.5rem;">
-      <code>
-  #!/bin/bash<br>
-  # Install additional dependencies<br>
-  conda install -c conda-forge your_package<br>
-  pip install specific_library==1.2.3<br>
-  
-  # Run your inference<br>
-  source activate falcon<br>
-  python your_inference_script.py</code></pre>
-  
-    <h6 class="title is-6">3. What is the correct dataset path for my code?</h6>
+    <div style="
+    background-color: #f5f5f5; 
+    padding: 15px; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5; /* 少量留白，兼顾美观和紧凑 */
+  ">
+    #!/bin/bash<br>
+    # Install additional dependencies<br>
+    conda install -c conda-forge your_package<br>
+    pip install specific_library==1.2.3<br>
+    <br>
+    # Run your inference<br>
+    source activate falcon<br>
+    python your_inference_script.py
+    </div>  
+    <h6 class="title is-5">3. What is the correct dataset path for my code?</h6>
     <p style="margin-bottom: 1rem;">
     To simplify evaluation, we use a fixed dataset mount point inside the evaluation Docker container:
     </p>
@@ -97,7 +104,7 @@
     <strong>Important</strong>: Your code should always read data from this path, regardless of which phase is being evaluated. Our backend automatically mounts the appropriate dataset for each phase to this location.
     </p>
   
-    <h6 class="title is-6">4. What are the differences between Phase I and Phase II?</h6>
+    <h6 class="title is-5">4. What are the differences between Phase I and Phase II?</h6>
     <p style="margin-bottom: 1rem;">
     All submissions are evaluated inside Docker images with the following versions:
     </p>
@@ -127,10 +134,10 @@
       5 - pause           # newly added action for pausing without movement
     </div>
     <p style="margin-bottom: 1.5rem;">
-      The two new actions (4-move_backward, 5-pause) are optional. Teams can continue using only actions 0-3 from Phase 1. Therefore, the action space is fully backward-compatible with Phase 1, ensuring smooth transition for existing methods.
+      The two new actions (4-move_backward, 5-pause) are optional. Students can also continue using only actions 0-3 from pretrained models.
     </p>
   
-    <h6 class="title is-6">5. How can I test my submission locally?</h6>
+    <h6 class="title is-5">5. How can I test my submission locally?</h6>
     <p style="margin-bottom: 1rem;">
     <strong>For Phase II</strong>, we recommend using Docker image v0.7 for local testing:
     </p>
@@ -151,14 +158,14 @@
     <p style="margin-bottom: 1.5rem;">
     </p>
   
-    <h6 class="title is-6">6. How long does evaluation take?</h6>
+    <h6 class="title is-5">6. How long does evaluation take?</h6>
     <ul style="margin-left: 1rem; margin-bottom: 1rem;">
       <li><strong>Minival Phase</strong>: 5–10 minutes</li>
       <li><strong>Test Phase</strong>: 1-2 hours (depending on number of environments used, queue length, and inference runtime)</li>
     </ul>
     <p style="margin-bottom: 1.5rem;">
   
-    <h6 class="title is-6">7. Can I modify the evaluation pipeline or import custom code?</h6>
+    <h6 class="title is-5">7. Can I modify the evaluation pipeline or import custom code?</h6>
     <p style="margin-bottom: 1rem;">
     <strong>Yes, we encourage flexible approaches!</strong> You have significant freedom to modify the evaluation pipeline and import your own code. You can base your modifications on:
     </p>
