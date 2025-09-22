@@ -13,11 +13,11 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
 
     # Phase-specific parameters
     phase_params = {
-        "minival": {
+        "dev": { # 原先设置有问题，是实际的val
             "split": "val_split",
             "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/minival:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
         },
-        "test_1": {
+        "minival": { # 原先设置有问题，是实际的test
             "split": "test_split",
             "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/phase2_hw100:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
         },
