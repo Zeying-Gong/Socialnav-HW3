@@ -13,22 +13,14 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
 
     # Phase-specific parameters
     phase_params = {
-        "dev": {
-            "split": "val_split",
-            "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/phase2:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
-        },
-        "minival": {
+        "dev": { # 原先设置有问题，是实际的val
             "split": "val_split",
             "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/minival:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
         },
-        "test_1": {
-            "split": "test_split_v1",
-            "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/phase1:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
+        "minival": { # 原先设置有问题，是实际的test
+            "split": "test_split",
+            "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/phase2_hw100:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
         },
-        "test_2": {
-            "split": "test_split_v2",
-            "val_dir": "/home/zeyingg/competition/SocialNav/update_Falcon/Falcon/data/datasets/pointnav/social-hm3d/phase2:/app/Falcon/data/datasets/pointnav/social-hm3d/minival"
-        }
     }
 
     if phase_codename not in phase_params:
@@ -36,7 +28,7 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
         return output
 
     # === 日志路径 ===
-    base_log_dir = kwargs.get("save_dir", "/mnt/nvme1/zeyingg/robosense_submissions")
+    base_log_dir = kwargs.get("save_dir", "/mnt/nvme1/zeyingg/Socialnav_HW_submissions")
     phase_dir = os.path.join(base_log_dir, phase_codename)
     submission_meta = kwargs.get("submission_metadata", {})
     team_name = submission_meta.get("participant_team_name", "unknown_team").replace(" ", "_")
@@ -50,23 +42,18 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
     filename = os.path.basename(user_submission_file)
     if filename.endswith(".zip"):
         submission_type = "code_zip"
-        submission_dir = tempfile.mkdtemp(dir=os.path.abspath("./tmp"))
+        tmp_dir = os.path.abspath("./tmp")
+        # 检查并创建 tmp 目录（如果不存在）
+        if not os.path.exists(tmp_dir):
+            os.makedirs(tmp_dir, exist_ok=True)  # exist_ok=True 避免目录已存在时报错
+        # 再创建临时目录
+        submission_dir = tempfile.mkdtemp(dir=tmp_dir)
         with zipfile.ZipFile(user_submission_file, "r") as zip_ref:
             zip_ref.extractall(submission_dir)
         run_command = ["bash", "input/run.sh"]
 
-    elif filename.endswith(".json"):
-        if phase_codename == "test_2":
-            output["stderr"] = "Phase 2 does not support action submission!"
-            return output
-        else:
-            # submission_type = "replay_json"
-            submission_dir = tempfile.mkdtemp(dir=os.path.abspath("./tmp"))
-            shutil.copy(user_submission_file, os.path.join(submission_dir, "actions.json"))
-            run_command = ["bash", "-c", "source activate falcon && cd /app/Falcon/ && python -u -m habitat_baselines.eval --config-name=social_nav_v2/falcon_hm3d_replay.yaml habitat_baselines.eval.split=minival"]
-
     else:
-        output["stderr"] = "Submission file must be either a .zip or .json"
+        output["stderr"] = "Submission file must be ended with .zip"
         return output
 
     BASE_IMAGE = "robosense_socialnav:v0.7"
