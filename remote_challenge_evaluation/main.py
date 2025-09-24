@@ -15,7 +15,7 @@ auth_token = os.environ["AUTH_TOKEN"]
 evalai_api_server = os.environ["API_SERVER"]
 queue_name = os.environ["QUEUE_NAME"]  # 保持单一队列
 challenge_pk = os.environ["CHALLENGE_PK"]
-save_dir = os.environ.get("SAVE_DIR", "./robosense-socialnav-dev/robosense_submissions")
+save_dir = os.environ.get("SAVE_DIR", "./Socialnav-HW/Socialnav_HW_submissions")
 
 # 本地消息路由目录 - 替代多队列的解决方案
 local_queue_dir = os.path.join(save_dir, "local_queues")

@@ -4,12 +4,12 @@
 gpus="$@"
 if [ -z "$gpus" ]; then
     echo "Usage: $0 <gpu_id1> <gpu_id2> ..."
-    echo "Example: $0 1 2 3 (where 1 is minival-only, 2 and 3 are general)"
+    echo "Example: $0 0 1 (both GPUs will run in BOTH mode)"
     exit 1
 fi
 
 # ==================== Configuration ====================
-PROJECT_DIR="/home/zeyingg/competition/SocialNav/robosense-socialnav-dev"
+PROJECT_DIR="/home/zeyingg/competition/SocialNav/Socialnav-HW" # for homework
 MAIN_SCRIPT="${PROJECT_DIR}/remote_challenge_evaluation/main.py"
 LOG_DIR="${PROJECT_DIR}/logs"
 PID_FILE="${PROJECT_DIR}/worker_pids.txt"
@@ -32,6 +32,7 @@ if [ -f "$PID_FILE" ]; then
     rm -f "$PID_FILE"
     sleep 2
 fi
+
 # Fallback pkill in case PID file was corrupted or not cleaned up
 pkill -9 -f "^python -u ${MAIN_SCRIPT}$" 2>/dev/null
 sleep 2
@@ -51,22 +52,24 @@ else
 fi
 
 # ==================== Start Workers ====================
-echo "Starting evaluation workers on GPUs: $gpus"
+echo "Starting evaluation workers on GPUs: $gpus (ALL running in BOTH mode)"
 > "$PID_FILE"  # Clear the old PID file
 
 for gpu_id in $gpus; do
-    echo "Starting worker for GPU $gpu_id..."
+    echo "Starting worker for GPU $gpu_id in BOTH mode..."
     timestamp=$(date +"%Y%m%d_%H%M%S")
     log_file="${LOG_DIR}/gpu_${gpu_id}_${timestamp}.log"
-
+    
     # Set CUDA_VISIBLE_DEVICES to bind the worker to a specific GPU
+    # Set WORKER_ROLE_OVERRIDE to BOTH for all workers
     CUDA_VISIBLE_DEVICES=$gpu_id \
+    WORKER_ROLE_OVERRIDE=BOTH \
     python -u "$MAIN_SCRIPT" > "$log_file" 2>&1 &
     
     pid=$!
-    echo "Worker for GPU $gpu_id started with PID: $pid (log: $log_file)"
+    echo "Worker for GPU $gpu_id started with PID: $pid in BOTH mode (log: $log_file)"
     echo "$pid" >> "$PID_FILE"
 done
 
-echo "All workers started. PIDs saved to $PID_FILE"
-echo "Remember: GPU 1 is specialized for minival, others for general phases."
+echo "All workers started in BOTH mode. PIDs saved to $PID_FILE"
+echo "Both GPUs can now process both minival and general phases."

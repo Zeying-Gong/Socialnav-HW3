@@ -7,6 +7,35 @@ import subprocess
 import contextlib
 from datetime import datetime
 
+def find_run_script(base_dir):
+    """
+    查找run.sh脚本的位置，支持自动检测目录结构
+    返回: (script_path, working_directory)
+    """
+    # 首先检查base_dir直接是否有run.sh
+    direct_run_sh = os.path.join(base_dir, "run.sh")
+    if os.path.exists(direct_run_sh):
+        return direct_run_sh, base_dir
+    
+    # 检查是否解压后只有一个子目录（常见的压缩错误）
+    items = os.listdir(base_dir)
+    dirs_only = [item for item in items if os.path.isdir(os.path.join(base_dir, item))]
+    
+    # 如果只有一个目录，且没有其他文件，很可能是嵌套了一层目录
+    if len(dirs_only) == 1 and len(items) == 1:
+        nested_dir = os.path.join(base_dir, dirs_only[0])
+        nested_run_sh = os.path.join(nested_dir, "run.sh")
+        if os.path.exists(nested_run_sh):
+            return nested_run_sh, nested_dir
+    
+    # 递归搜索所有可能的run.sh位置（最多搜索2层深度，避免无限递归）
+    for root, dirs, files in os.walk(base_dir):
+        if "run.sh" in files:
+            depth = root.replace(base_dir, '').count(os.sep)
+            if depth <= 2:  # 限制搜索深度
+                return os.path.join(root, "run.sh"), root
+    
+    raise FileNotFoundError("run.sh not found in submission archive")
 def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **kwargs):
     print("Starting Evaluation.....")
     output = {"stdout": "", "stderr": ""}
@@ -46,11 +75,35 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
         # 检查并创建 tmp 目录（如果不存在）
         if not os.path.exists(tmp_dir):
             os.makedirs(tmp_dir, exist_ok=True)  # exist_ok=True 避免目录已存在时报错
-        # 再创建临时目录
+        
+        # 创建临时目录并解压
         submission_dir = tempfile.mkdtemp(dir=tmp_dir)
         with zipfile.ZipFile(user_submission_file, "r") as zip_ref:
             zip_ref.extractall(submission_dir)
-        run_command = ["bash", "input/run.sh"]
+        
+        # 使用新的函数查找run.sh并确定工作目录
+        try:
+            run_script_path, working_dir = find_run_script(submission_dir)
+            print(f"[INFO] Found run.sh at: {run_script_path}")
+            print(f"[INFO] Working directory: {working_dir}")
+            
+            # 计算相对于submission_dir的相对路径，用于Docker挂载
+            relative_work_dir = os.path.relpath(working_dir, submission_dir)
+            if relative_work_dir == ".":
+                docker_work_dir = "/app/Falcon/input"
+                run_command = ["bash", "input/run.sh"]
+            else:
+                docker_work_dir = f"/app/Falcon/input/{relative_work_dir}"
+                run_command = ["bash", f"input/{relative_work_dir}/run.sh"]
+                
+        except FileNotFoundError as e:
+            output["stderr"] = f"Submission validation failed: {str(e)}"
+            return output
+            
+        # 检查run.sh是否有执行权限，如果没有则添加
+        if not os.access(run_script_path, os.X_OK):
+            os.chmod(run_script_path, 0o755)
+            print(f"[INFO] Added execute permission to {run_script_path}")
 
     else:
         output["stderr"] = "Submission file must be ended with .zip"
@@ -74,7 +127,7 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
                 "--runtime=nvidia",
                 "-e", "NVIDIA_DRIVER_CAPABILITIES=all",
                 "-e", "EGL_PLATFORM=surfaceless",
-                "-w", "/app/Falcon",
+                "-w", docker_work_dir,  # 使用检测到的工作目录
                 "-v", f"{submission_dir}:/app/Falcon/input:ro",
                 "-v", f"{hm3d_dir}/hm3d:/mnt/nvme2/zeyingg/versioned_data/hm3d-0.2/hm3d:ro",
                 "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/hab3_bench_assets:/app/Falcon/data/hab3_bench_assets:ro",
