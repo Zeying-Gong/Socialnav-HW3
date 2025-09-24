@@ -1,6 +1,6 @@
 # If you are not sure what all these fields mean, please refer our documentation here:
 # https://evalai.readthedocs.io/en/latest/configuration.html
-title: Homework 3 of AIAA 4220 - Introduction to Embodied AI 
+title: Social Navigation Challenge
 short_description: RGBD-based Social Navigation in Human-Shared Environments
 description: templates/description.html
 evaluation_details: templates/evaluation_details.html

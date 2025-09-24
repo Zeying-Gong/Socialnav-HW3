@@ -39,9 +39,7 @@ gpu_id = os.environ.get("CUDA_VISIBLE_DEVICES", "0")
 worker_pid = os.getpid()
 
 # Define worker roles based on GPU ID
-WORKER_ROLE = "GENERAL"  # Default role for other GPUs
-if gpu_id == "1":  # GPU 1 dedicated to minival
-    WORKER_ROLE = "MINIVAL_ONLY"
+WORKER_ROLE = "BOTH"  # Default role for other GPUs
 
 # Allow env override for worker role: GENERAL | MINIVAL_ONLY | BOTH
 WORKER_ROLE_OVERRIDE = os.environ.get("WORKER_ROLE_OVERRIDE")
