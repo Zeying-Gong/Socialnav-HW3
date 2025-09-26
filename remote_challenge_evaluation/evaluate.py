@@ -58,7 +58,6 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
 
     BASE_IMAGE = "robosense_socialnav:v0.7"
     hm3d_dir = "/mnt/nvme2/zeyingg/versioned_data/hm3d-0.2"
-    data_dir = "/home/zeyingg/competition/SocialNav/Falcon/data"
     container_name = f"eval_container_{os.getpid()}"
     docker_result_path = "/app/Falcon/output/result.json"
     host_result_dir = tempfile.mkdtemp(dir=os.path.abspath("./tmp"))
@@ -77,12 +76,12 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
                 "-w", "/app/Falcon",
                 "-v", f"{submission_dir}:/app/Falcon/input:ro",
                 "-v", f"{hm3d_dir}/hm3d:/mnt/nvme2/zeyingg/versioned_data/hm3d-0.2/hm3d:ro",
-                "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/hab3_bench_assets:/app/Falcon/data/hab3_bench_assets:ro",
-                "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/humanoids:/app/Falcon/data/humanoids:ro",
-                "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/robots:/app/Falcon/data/robots:ro",
-                "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/scene_datasets:/app/Falcon/data/scene_datasets:ro",
-                "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/versioned_data:/app/Falcon/data/versioned_data:ro",
-                "-v", "/home/zeyingg/competition/SocialNav/Falcon/data/datasets/pointnav/social-hm3d/train:/app/Falcon/data/datasets/pointnav/social-hm3d/train:ro"
+                "-v", "/mnt/nvme1/zeyingg/aiaa4220_hw3/data/hab3_bench_assets:/app/Falcon/data/hab3_bench_assets:ro",
+                "-v", "/mnt/nvme1/zeyingg/aiaa4220_hw3/data/humanoids:/app/Falcon/data/humanoids:ro",
+                "-v", "/mnt/nvme1/zeyingg/aiaa4220_hw3/data/robots:/app/Falcon/data/robots:ro",
+                "-v", "/mnt/nvme1/zeyingg/aiaa4220_hw3/data/scene_datasets:/app/Falcon/data/scene_datasets:ro",
+                "-v", "/mnt/nvme1/zeyingg/aiaa4220_hw3/data/versioned_data:/app/Falcon/data/versioned_data:ro",
+                "-v", "/mnt/nvme1/zeyingg/aiaa4220_hw3/data/datasets/pointnav/social-hm3d/train:/app/Falcon/data/datasets/pointnav/social-hm3d/train:ro"
             ]
 
             

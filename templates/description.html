@@ -104,19 +104,8 @@
     <strong>Important</strong>: Your code should always read data from this path, regardless of which phase is being evaluated. Our backend automatically mounts the appropriate dataset for each phase to this location.
     </p>
   
-    <h5 class="title is-4">4. What are the differences between Phase I and Phase II?</h5>
+    <h5 class="title is-4">4. What is the action space?</h5>
     <p style="margin-bottom: 1rem;">
-    All submissions are evaluated inside Docker images with the following versions:
-    </p>
-    <strong>Phase II</strong>: <code>docker pull zeyinggong/robosense_socialnav:v0.7</code>
-    <p style="margin-bottom: 0.5rem;">
-    <strong>Key Changes in v0.7</strong>:
-    </p>
-    <ol style="margin-left: 1rem; margin-bottom: 1rem;">
-      <li><strong>Fixed driver compatibility issues</strong> due to EGL errors</li>
-      <li><strong>Multi-environment support</strong>: Phase II supports up to 8 environments for evaluation</li>
-      <li><strong>Updated action space</strong>: The action set has been refined to clearly distinguish between <strong>stopping</strong> <em>(ending an episode)</em> and <strong>pausing</strong> <em>(remaining stationary)</em>. A new <strong>move_backward</strong> action is also introduced.</li>
-    </ol>
     <div style="
     background-color: #f5f5f5; 
     padding: 15px; 
