@@ -50,6 +50,21 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
         submission_dir = tempfile.mkdtemp(dir=tmp_dir)
         with zipfile.ZipFile(user_submission_file, "r") as zip_ref:
             zip_ref.extractall(submission_dir)
+
+        run_sh_path = os.path.join(submission_dir, "run.sh")
+        if not os.path.exists(run_sh_path):
+
+            subdirs = [d for d in os.listdir(submission_dir) if os.path.isdir(os.path.join(submission_dir, d))]
+            if len(subdirs) == 1:
+                possible_dir = os.path.join(submission_dir, subdirs[0])
+                inner_run_sh = os.path.join(possible_dir, "run.sh")
+                if os.path.exists(inner_run_sh):
+                    submission_dir = possible_dir
+                else:
+                    raise FileNotFoundError("run.sh not found in zip file. Please check the submission structure.")
+            else:
+                raise FileNotFoundError("run.sh not found in zip file. Please check the submission structure.")
+
         run_command = ["bash", "input/run.sh"]
 
     else:
