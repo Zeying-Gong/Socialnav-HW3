@@ -39,34 +39,32 @@ def evaluate(user_submission_file, phase_codename, test_annotation_file=None, **
     os.makedirs(log_dir, exist_ok=True)
     log_path = os.path.join(log_dir, f"submission_{submission_id}_{timestamp}.log")
 
+
     filename = os.path.basename(user_submission_file)
     if filename.endswith(".zip"):
         submission_type = "code_zip"
         tmp_dir = os.path.abspath("./tmp")
-        # 检查并创建 tmp 目录（如果不存在）
-        if not os.path.exists(tmp_dir):
-            os.makedirs(tmp_dir, exist_ok=True)  # exist_ok=True 避免目录已存在时报错
-        # 再创建临时目录
+        os.makedirs(tmp_dir, exist_ok=True)
+
         submission_dir = tempfile.mkdtemp(dir=tmp_dir)
         with zipfile.ZipFile(user_submission_file, "r") as zip_ref:
-            zip_ref.extractall(submission_dir)
+            # 过滤掉 Mac 隐藏文件
+            members = [m for m in zip_ref.namelist() if not m.startswith("__MACOSX/") and not m.endswith(".DS_Store")]
+            zip_ref.extractall(submission_dir, members)
 
-        run_sh_path = os.path.join(submission_dir, "run.sh")
-        if not os.path.exists(run_sh_path):
+        # 递归查找 run.sh
+        run_sh_path = None
+        for root, dirs, files in os.walk(submission_dir):
+            if "run.sh" in files:
+                run_sh_path = os.path.join(root, "run.sh")
+                submission_dir = root  # 将包含 run.sh 的目录设为主目录
+                break
 
-            subdirs = [d for d in os.listdir(submission_dir) if os.path.isdir(os.path.join(submission_dir, d))]
-            if len(subdirs) == 1:
-                possible_dir = os.path.join(submission_dir, subdirs[0])
-                inner_run_sh = os.path.join(possible_dir, "run.sh")
-                if os.path.exists(inner_run_sh):
-                    submission_dir = possible_dir
-                else:
-                    raise FileNotFoundError("run.sh not found in zip file. Please check the submission structure.")
-            else:
-                raise FileNotFoundError("run.sh not found in zip file. Please check the submission structure.")
+        if run_sh_path is None:
+            raise FileNotFoundError("run.sh not found anywhere inside submission zip file.")
 
+        subprocess.run(["chmod", "+x", run_sh_path], check=False)
         run_command = ["bash", "input/run.sh"]
-
     else:
         output["stderr"] = "Submission file must be ended with .zip"
         return output
