@@ -11,7 +11,7 @@ leaderboard_description: Algorithms are evaluated based on navigation efficiency
 evaluation_script: evaluation_script.zip
 remote_evaluation: True
 start_date: 2025-09-20 16:00:00
-end_date: 2025-11-24 15:59:59
+end_date: 2025-11-30 15:59:59
 published: True
 tags: 
   - Social Navigation
